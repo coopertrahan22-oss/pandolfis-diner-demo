@@ -3,380 +3,507 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pandolfi's Diner — Mattapoisett, MA</title>
+  <title>Pandolfi's Mattapoisett Diner — Serious Diner Food Since Day One</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&family=Inter:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --red:    #b83232;
-      --red-dk: #8f2020;
-      --cream:  #fef9ec;
-      --cream2: #f5edd8;
-      --esp:    #2c2010;
-      --esp-lt: #4a3820;
-      --warm:   #7a5230;
-      --gold:   #c9882e;
-      --text:   #1e1409;
-      --muted:  #6b5640;
+      --navy:     #1e4d7a;
+      --navy-dk:  #122e4a;
+      --navy-lt:  #2a6199;
+      --crimson:  #8f1a2c;
+      --crimson2: #b82238;
+      --cream:    #fef9ec;
+      --cream2:   #f0e8d4;
+      --cream3:   #e5d9c3;
+      --white:    #ffffff;
+      --esp:      #12100e;
+      --warm:     #4a3010;
+      --muted:    #6b5030;
+      --gold:     #c9922e;
+      --gold-lt:  #f0d080;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--text); }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--esp); line-height: 1.6; }
 
-    /* ── TOPBAR ── */
+    /* ─── TOPBAR ─── */
     .topbar {
-      background: var(--esp);
-      color: #e8d8c0;
-      font-size: .78rem;
+      background: var(--crimson);
+      color: rgba(255,255,255,.9);
+      font-size: .76rem;
+      font-weight: 500;
       letter-spacing: .04em;
-      padding: .45rem 2rem;
+      padding: .5rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: .5rem;
+      gap: .4rem;
     }
-    .topbar a { color: inherit; text-decoration: none; }
-    .topbar strong { color: var(--gold); }
+    .topbar a { color: var(--gold-lt); text-decoration: none; font-weight: 700; }
+    .topbar-left { display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap; }
 
-    /* ── HEADER ── */
+    /* ─── HEADER ─── */
     header {
-      background: var(--cream);
-      border-bottom: 3px solid var(--red);
+      background: var(--white);
+      border-bottom: 3px solid var(--navy);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 200;
       padding: 0 2rem;
+      height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 70px;
+      box-shadow: 0 2px 20px rgba(0,0,0,.08);
     }
-    .logo {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2rem;
-      color: var(--red);
-      letter-spacing: .06em;
+
+    /* Logo mark */
+    .logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
+    .logo-circle {
+      width: 50px; height: 50px;
+      background: var(--navy);
+      border-radius: 50%;
+      border: 2px solid var(--navy-dk);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 1px var(--navy-dk);
+      font-size: 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .logo-circle::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.15);
+    }
+    .logo-text-wrap { line-height: 1; }
+    .logo-name {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--crimson);
+      letter-spacing: -.01em;
       line-height: 1;
-      display: flex;
-      align-items: center;
-      gap: .5rem;
     }
-    .logo span { color: var(--esp); }
-    nav { display: flex; gap: 2rem; align-items: center; }
-    nav a {
-      font-size: .85rem;
-      font-weight: 600;
-      letter-spacing: .06em;
+    .logo-sub {
+      font-family: 'Oswald', sans-serif;
+      font-size: .6rem;
+      font-weight: 500;
+      letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--esp);
+      color: var(--navy);
+      margin-top: .1rem;
+    }
+
+    nav { display: flex; gap: 1.8rem; align-items: center; }
+    nav a {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--navy-dk);
       text-decoration: none;
       transition: color .2s;
     }
-    nav a:hover { color: var(--red); }
+    nav a:hover { color: var(--crimson); }
     .nav-cta {
-      background: var(--red);
-      color: #fff !important;
-      padding: .5rem 1.3rem;
-      border-radius: 4px;
+      background: var(--crimson);
+      color: var(--white) !important;
+      padding: .55rem 1.4rem;
+      border-radius: 3px;
+      transition: background .2s !important;
     }
-    .nav-cta:hover { background: var(--red-dk) !important; }
+    .nav-cta:hover { background: var(--crimson2) !important; }
 
-    /* ── HERO ── */
+    /* ─── HERO ─── */
     .hero {
-      background: var(--esp);
+      background: var(--navy-dk);
       position: relative;
       overflow: hidden;
-      padding: 6rem 2rem 5rem;
+      padding: 5.5rem 2rem 4rem;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
     }
+    /* Diner checkerboard texture */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: repeating-linear-gradient(
-        45deg,
-        transparent,
-        transparent 30px,
-        rgba(255,255,255,.015) 30px,
-        rgba(255,255,255,.015) 31px
-      );
+      background-image:
+        linear-gradient(45deg, rgba(255,255,255,.018) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(255,255,255,.018) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255,255,255,.018) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,.018) 75%);
+      background-size: 60px 60px;
+      background-position: 0 0, 0 30px, 30px -30px, -30px 0;
     }
-    /* large watermark text */
+    /* Large crimson bar on right */
     .hero::after {
-      content: 'EST. 1950s';
+      content: '';
       position: absolute;
-      bottom: -1.5rem;
-      right: -1rem;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 11rem;
-      color: rgba(255,255,255,.04);
-      line-height: 1;
-      pointer-events: none;
-      letter-spacing: .05em;
+      right: 0; top: 0; bottom: 0;
+      width: 38%;
+      background: linear-gradient(135deg, var(--crimson) 0%, #6b0f1e 100%);
+      clip-path: polygon(12% 0, 100% 0, 100% 100%, 0% 100%);
     }
     .hero-inner {
-      max-width: 1200px;
+      max-width: 1240px;
       margin: 0 auto;
+      width: 100%;
       display: grid;
-      grid-template-columns: 1fr 360px;
-      gap: 4rem;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 5rem;
       align-items: center;
       position: relative;
+      z-index: 2;
     }
-    .hero-badge {
+
+    /* Left col */
+    .hero-eyebrow {
       display: inline-flex;
       align-items: center;
       gap: .5rem;
-      background: var(--red);
-      color: #fff;
-      font-size: .7rem;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.15);
+      color: var(--gold-lt);
+      font-size: .72rem;
       font-weight: 700;
-      letter-spacing: .14em;
+      letter-spacing: .16em;
       text-transform: uppercase;
-      padding: .35rem .9rem;
+      padding: .4rem 1rem;
       border-radius: 2px;
       margin-bottom: 1.5rem;
     }
     .hero h1 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(3.2rem, 6.5vw, 5.5rem);
+      font-weight: 700;
       line-height: .95;
-      letter-spacing: .02em;
-      color: var(--cream);
-      margin-bottom: 1.5rem;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1.6rem;
     }
     .hero h1 em {
-      color: var(--red);
-      font-style: normal;
+      font-style: italic;
+      color: var(--gold-lt);
+      font-family: 'Playfair Display', serif;
+      font-weight: 800;
+      text-transform: none;
+      display: block;
+      font-size: 1.15em;
+      letter-spacing: -.01em;
     }
+    .hero-stars {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      margin-bottom: 1.4rem;
+      flex-wrap: wrap;
+    }
+    .star-row { color: var(--gold-lt); font-size: 1.1rem; letter-spacing: .05em; }
+    .star-label {
+      font-size: .82rem;
+      color: rgba(255,255,255,.65);
+      border-left: 1px solid rgba(255,255,255,.2);
+      padding-left: .75rem;
+    }
+    .star-label strong { color: rgba(255,255,255,.9); }
     .hero-sub {
-      font-size: 1.05rem;
-      color: #c4a880;
-      line-height: 1.7;
-      max-width: 480px;
-      margin-bottom: 2rem;
+      font-size: 1rem;
+      color: rgba(255,255,255,.65);
+      line-height: 1.75;
+      max-width: 460px;
+      margin-bottom: 2.2rem;
     }
     .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
     .btn {
       display: inline-block;
-      font-family: 'Inter', sans-serif;
-      font-size: .85rem;
-      font-weight: 700;
-      letter-spacing: .08em;
+      font-family: 'Oswald', sans-serif;
+      font-size: .9rem;
+      font-weight: 600;
+      letter-spacing: .1em;
       text-transform: uppercase;
       text-decoration: none;
-      padding: .85rem 2rem;
-      border-radius: 4px;
+      padding: .85rem 2.2rem;
+      border-radius: 3px;
       transition: all .2s;
       cursor: pointer;
     }
-    .btn-red { background: var(--red); color: #fff; }
-    .btn-red:hover { background: var(--red-dk); transform: translateY(-1px); }
-    .btn-outline { background: transparent; color: var(--cream); border: 2px solid rgba(255,255,255,.3); }
-    .btn-outline:hover { border-color: var(--cream); background: rgba(255,255,255,.08); }
+    .btn-cream { background: var(--cream); color: var(--crimson); }
+    .btn-cream:hover { background: var(--white); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+    .btn-ghost { background: transparent; color: var(--white); border: 2px solid rgba(255,255,255,.35); }
+    .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
+    .btn-navy { background: var(--navy); color: var(--white); }
+    .btn-navy:hover { background: var(--navy-lt); transform: translateY(-1px); }
+    .btn-crimson { background: var(--crimson); color: var(--white); }
+    .btn-crimson:hover { background: var(--crimson2); transform: translateY(-1px); }
 
-    /* info card */
-    .info-card {
-      background: var(--cream);
-      border-radius: 8px;
+    /* Right col — info card */
+    .hero-card {
+      background: var(--white);
+      border-radius: 6px;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+      box-shadow: 0 25px 70px rgba(0,0,0,.45);
     }
-    .info-card-header {
-      background: var(--red);
-      color: #fff;
-      padding: 1.2rem 1.5rem;
+    /* SVG logo mark at top of card */
+    .card-logo-strip {
+      background: var(--navy);
+      padding: 2rem 1.5rem 1.5rem;
       text-align: center;
+      position: relative;
     }
-    .info-card-header h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.6rem;
-      letter-spacing: .08em;
+    .card-logo-mark {
+      display: inline-block;
+      position: relative;
     }
-    .info-card-header p {
-      font-size: .78rem;
-      opacity: .85;
-      margin-top: .25rem;
+    /* Inline SVG-style logo via CSS */
+    .logo-svg-wrap {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 1rem;
     }
-    .info-card-body { padding: 1.5rem; }
-    .info-row {
+    .card-tagline {
+      font-family: 'Oswald', sans-serif;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.55);
+    }
+    .card-diner-name {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1;
+      margin: .3rem 0 .1rem;
+    }
+    .card-diner-sub {
+      font-family: 'Oswald', sans-serif;
+      font-size: .75rem;
+      letter-spacing: .2em;
+      color: rgba(255,255,255,.5);
+      text-transform: uppercase;
+    }
+    .card-body { padding: 1.8rem; }
+    .card-row {
       display: flex;
-      gap: 1rem;
+      gap: .9rem;
       align-items: flex-start;
-      margin-bottom: 1.2rem;
       padding-bottom: 1.2rem;
-      border-bottom: 1px solid var(--cream2);
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid #f0e8d4;
     }
-    .info-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .info-icon {
-      width: 38px;
-      height: 38px;
+    .card-row:last-of-type { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .card-icon {
+      width: 38px; height: 38px;
       background: var(--cream2);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
       flex-shrink: 0;
+      border: 1px solid var(--cream3);
     }
-    .info-label {
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: .2rem;
+    .card-lbl { font-size: .67rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .15rem; }
+    .card-val { font-size: .9rem; font-weight: 600; color: var(--esp); line-height: 1.5; }
+    .card-val a { color: var(--crimson); text-decoration: none; }
+    .card-val .open { color: #1e7a3a; font-weight: 700; }
+    .card-footer {
+      padding: 0 1.8rem 1.8rem;
     }
-    .info-value {
-      font-size: .9rem;
-      font-weight: 600;
-      color: var(--esp);
-      line-height: 1.5;
-    }
-    .info-value a { color: var(--red); text-decoration: none; }
-    .info-card-cta {
-      padding: 0 1.5rem 1.5rem;
-    }
-    .info-card-cta a {
+    .card-footer a {
       display: block;
-      background: var(--esp);
-      color: var(--cream);
+      background: var(--crimson);
+      color: var(--white);
       text-align: center;
-      padding: .9rem;
-      border-radius: 4px;
-      font-weight: 700;
-      font-size: .85rem;
-      letter-spacing: .08em;
+      padding: .95rem;
+      border-radius: 3px;
+      font-family: 'Oswald', sans-serif;
+      font-size: .95rem;
+      font-weight: 600;
+      letter-spacing: .1em;
       text-transform: uppercase;
       text-decoration: none;
       transition: background .2s;
     }
-    .info-card-cta a:hover { background: var(--red); }
+    .card-footer a:hover { background: var(--crimson2); }
 
-    /* ── STRIP ── */
-    .strip {
-      background: var(--red);
-      padding: .9rem 2rem;
+    /* ─── RATING STRIP ─── */
+    .rating-strip {
+      background: var(--crimson);
+      padding: 1rem 2rem;
       display: flex;
       justify-content: center;
+      align-items: center;
       gap: 3rem;
       flex-wrap: wrap;
     }
-    .strip-item {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.2rem;
-      letter-spacing: .1em;
-      color: #fff;
-      opacity: .9;
+    .rating-item {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      color: var(--white);
     }
-    .strip-dot { color: rgba(255,255,255,.4); }
-
-    /* ── WAVE ── */
-    .wave { display: block; width: 100%; overflow: hidden; line-height: 0; }
-    .wave svg { display: block; width: 100%; }
-
-    /* ── MENU SECTION ── */
-    .menu { background: var(--cream); padding: 5rem 2rem; }
-    .section-header { text-align: center; margin-bottom: 3rem; }
-    .section-eyebrow {
-      font-size: .72rem;
+    .rating-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.6rem;
       font-weight: 700;
-      letter-spacing: .18em;
+      color: var(--gold-lt);
+      line-height: 1;
+    }
+    .rating-text { font-size: .78rem; color: rgba(255,255,255,.75); line-height: 1.3; }
+    .rating-text strong { color: var(--white); display: block; }
+    .rating-div { width: 1px; height: 30px; background: rgba(255,255,255,.2); }
+
+    /* ─── SECTION COMMONS ─── */
+    .section-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .22em;
       text-transform: uppercase;
-      color: var(--red);
+      color: var(--crimson);
       margin-bottom: .6rem;
     }
     .section-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      color: var(--esp);
-      line-height: 1.2;
+      font-size: clamp(1.9rem, 3.5vw, 2.75rem);
+      font-weight: 800;
+      color: var(--navy-dk);
+      line-height: 1.15;
     }
-    .section-title em { font-style: italic; color: var(--red); }
+    .section-title em { font-style: italic; color: var(--crimson); }
     .section-sub {
-      font-size: 1rem;
+      font-size: .95rem;
       color: var(--muted);
-      margin-top: .8rem;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
+      line-height: 1.75;
+      max-width: 520px;
     }
-    .menu-grid {
-      max-width: 1100px;
+    .section-header { margin-bottom: 3rem; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-sub { margin: .8rem auto 0; }
+
+    /* ─── WAVE ─── */
+    .wave { display: block; width: 100%; overflow: hidden; line-height: 0; }
+    .wave svg { display: block; width: 100%; }
+
+    /* ─── SIGNATURES (MENU) ─── */
+    .signatures {
+      background: var(--cream);
+      padding: 5.5rem 2rem;
+    }
+    .sig-grid {
+      max-width: 1200px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
     }
-    .menu-card {
-      background: #fff;
-      border-radius: 8px;
-      border: 1px solid #e8dcc8;
-      padding: 1.8rem 1.5rem;
-      transition: box-shadow .2s, transform .2s;
-      position: relative;
+    .sig-card {
+      background: var(--white);
+      border-radius: 6px;
+      border: 1px solid var(--cream3);
+      overflow: hidden;
+      transition: box-shadow .25s, transform .25s;
+      display: flex;
+      flex-direction: column;
     }
-    .menu-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,.1); transform: translateY(-3px); }
-    .menu-card.featured {
-      border-color: var(--red);
-      border-width: 2px;
+    .sig-card:hover {
+      box-shadow: 0 12px 40px rgba(30,77,122,.12);
+      transform: translateY(-4px);
     }
-    .menu-badge {
-      position: absolute;
-      top: -10px;
-      left: 1.2rem;
-      background: var(--red);
-      color: #fff;
-      font-size: .65rem;
-      font-weight: 700;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: .2rem .7rem;
-      border-radius: 2px;
-    }
-    .menu-icon { font-size: 2.5rem; margin-bottom: 1rem; display: block; }
-    .menu-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem;
-      color: var(--esp);
-      margin-bottom: .5rem;
-    }
-    .menu-card p { font-size: .88rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
-    .menu-items {
-      list-style: none;
-      border-top: 1px solid #e8dcc8;
-      padding-top: .8rem;
-    }
-    .menu-items li {
-      font-size: .82rem;
-      color: var(--warm);
-      padding: .3rem 0;
+    .sig-card.featured { border: 2px solid var(--crimson); }
+    .sig-img {
+      height: 190px;
+      background: var(--navy);
       display: flex;
       align-items: center;
-      gap: .5rem;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+      overflow: hidden;
     }
-    .menu-items li::before {
-      content: '·';
-      color: var(--red);
-      font-weight: 900;
-      font-size: 1.2rem;
-      line-height: 1;
+    /* Individual card color themes */
+    .sig-card:nth-child(1) .sig-img { background: linear-gradient(135deg, #1a3d60 0%, #2a5f96 100%); }
+    .sig-card:nth-child(2) .sig-img { background: linear-gradient(135deg, #3d1a0f 0%, #7a3318 100%); }
+    .sig-card:nth-child(3) .sig-img { background: linear-gradient(135deg, #1e3d1a 0%, #3d7a30 100%); }
+    .sig-card:nth-child(4) .sig-img { background: linear-gradient(135deg, #3d2c0a 0%, #7a5818 100%); }
+    .sig-card:nth-child(5) .sig-img { background: linear-gradient(135deg, #0a2d3d 0%, #1a5c7a 100%); }
+    .sig-card:nth-child(6) .sig-img { background: linear-gradient(135deg, #3d0a1a 0%, #7a1830 100%); }
+    .sig-badge {
+      position: absolute;
+      top: .8rem; left: .8rem;
+      background: var(--crimson);
+      color: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: .62rem;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: .2rem .65rem;
+      border-radius: 2px;
+    }
+    .sig-badge.gold { background: var(--gold); color: var(--navy-dk); }
+    .sig-body { padding: 1.5rem; flex: 1; }
+    .sig-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--navy-dk);
+      margin-bottom: .4rem;
+    }
+    .sig-body p { font-size: .87rem; color: var(--muted); line-height: 1.65; }
+    .sig-tags {
+      display: flex;
+      gap: .4rem;
+      flex-wrap: wrap;
+      padding: 0 1.5rem 1.5rem;
+    }
+    .sig-tag {
+      font-size: .68rem;
+      font-weight: 600;
+      letter-spacing: .06em;
+      color: var(--navy);
+      background: #e8f0f8;
+      padding: .2rem .6rem;
+      border-radius: 2px;
+      text-transform: uppercase;
     }
 
-    /* ── ABOUT ── */
-    .about { background: var(--esp); padding: 6rem 2rem; }
-    .about-inner {
+    /* ─── SPECIAL FEATURE ─── */
+    .feature { background: var(--navy-dk); padding: 5rem 2rem; position: relative; overflow: hidden; }
+    .feature::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg, transparent, transparent 20px,
+        rgba(255,255,255,.012) 20px, rgba(255,255,255,.012) 21px
+      );
+    }
+    .feature-inner {
       max-width: 1100px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 5rem;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
-    .about-img {
-      background: var(--esp-lt);
-      border-radius: 8px;
+    .feature-img {
+      border-radius: 6px;
+      background: linear-gradient(135deg, #0a2d3d 0%, #1a5c7a 100%);
       aspect-ratio: 4/3;
       display: flex;
       align-items: center;
@@ -384,533 +511,975 @@
       font-size: 5rem;
       position: relative;
       overflow: hidden;
-      border: 2px solid rgba(201,136,46,.3);
+      border: 2px solid rgba(255,255,255,.1);
     }
-    .about-img::after {
-      content: 'PANDOLFI\'S\nDINER';
+    .feature-img::after {
+      content: 'SUMMER SPECIAL';
       position: absolute;
-      bottom: 1.5rem;
-      left: 1.5rem;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.8rem;
-      color: rgba(255,255,255,.2);
-      letter-spacing: .1em;
-      line-height: 1.1;
-      white-space: pre;
+      bottom: 1.2rem; left: 1.2rem;
+      font-family: 'Oswald', sans-serif;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .2em;
+      color: rgba(255,255,255,.5);
+      text-transform: uppercase;
+      background: rgba(0,0,0,.3);
+      padding: .3rem .8rem;
+      border-radius: 2px;
     }
-    .about-content .section-eyebrow { text-align: left; color: var(--gold); }
-    .about-content .section-title { text-align: left; color: var(--cream); }
-    .about-content .section-title em { color: var(--gold); }
-    .about-body {
+    .feature-content .section-eyebrow { color: var(--gold-lt); }
+    .feature-content .section-title { color: var(--white); }
+    .feature-content .section-title em { color: var(--gold-lt); }
+    .feature-body {
       font-size: .95rem;
-      color: #c4a880;
+      color: rgba(255,255,255,.6);
       line-height: 1.8;
       margin-top: 1.2rem;
     }
-    .about-body p + p { margin-top: 1rem; }
-    .about-stats {
+    .feature-body p + p { margin-top: 1rem; }
+    .feature-detail {
       display: flex;
-      gap: 2.5rem;
-      margin-top: 2.5rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid rgba(255,255,255,.1);
+      gap: 1.5rem;
+      margin-top: 2rem;
       flex-wrap: wrap;
     }
-    .about-stat-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.8rem;
-      color: var(--gold);
-      letter-spacing: .04em;
-      line-height: 1;
+    .feature-detail-item {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 4px;
+      padding: .7rem 1.2rem;
+      font-size: .82rem;
+      color: rgba(255,255,255,.75);
     }
-    .about-stat-label {
-      font-size: .78rem;
-      color: #c4a880;
+    .feature-detail-item span { display: block; font-size: .65rem; color: rgba(255,255,255,.4); letter-spacing: .1em; text-transform: uppercase; margin-bottom: .15rem; }
+
+    /* ─── ABOUT ─── */
+    .about { background: var(--cream2); padding: 5.5rem 2rem; }
+    .about-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-content { }
+    .about-body {
+      font-size: .95rem;
+      color: var(--warm);
+      line-height: 1.85;
+      margin-top: 1.2rem;
+    }
+    .about-body p + p { margin-top: 1rem; }
+    .about-pull {
+      margin-top: 2rem;
+      padding: 1.5rem 1.5rem 1.5rem 2rem;
+      border-left: 4px solid var(--crimson);
+      background: rgba(143,26,44,.04);
+      border-radius: 0 4px 4px 0;
+    }
+    .about-pull p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      color: var(--crimson);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .about-pull cite {
+      font-size: .75rem;
+      color: var(--muted);
       letter-spacing: .06em;
       text-transform: uppercase;
-      margin-top: .2rem;
+      font-style: normal;
+      display: block;
+      margin-top: .6rem;
     }
 
-    /* ── REVIEWS ── */
-    .reviews { background: var(--cream2); padding: 5rem 2rem; }
+    /* Stat cards */
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .stat-card {
+      background: var(--white);
+      border-radius: 6px;
+      border: 1px solid var(--cream3);
+      padding: 1.5rem 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .stat-card.highlight { border-color: var(--crimson); border-width: 2px; }
+    .stat-icon {
+      width: 54px; height: 54px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+    .stat-icon.navy { background: var(--navy); }
+    .stat-icon.crimson { background: var(--crimson); }
+    .stat-icon.gold { background: var(--gold); }
+    .stat-num {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--navy-dk);
+      line-height: 1;
+    }
+    .stat-num.crimson { color: var(--crimson); }
+    .stat-desc { font-size: .82rem; color: var(--muted); margin-top: .2rem; }
+
+    /* ─── REVIEWS ─── */
+    .reviews { background: var(--white); padding: 5.5rem 2rem; }
     .reviews-grid {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 2.5rem auto 0;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
     }
     .review-card {
-      background: #fff;
-      border-radius: 8px;
-      padding: 1.8rem 1.5rem;
-      border: 1px solid #e0d0bc;
+      border-radius: 6px;
+      border: 1px solid var(--cream3);
+      padding: 2rem 1.8rem;
       position: relative;
+      background: var(--cream);
+      transition: box-shadow .2s;
     }
+    .review-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,.07); }
     .review-card::before {
-      content: '"';
+      content: '\201C';
       position: absolute;
-      top: .5rem;
-      right: 1.2rem;
+      top: .8rem; right: 1.4rem;
       font-family: 'Playfair Display', serif;
-      font-size: 4rem;
-      color: var(--red);
-      opacity: .15;
+      font-size: 5rem;
+      color: var(--crimson);
+      opacity: .12;
       line-height: 1;
     }
-    .stars { color: var(--gold); font-size: .9rem; margin-bottom: .8rem; letter-spacing: .1em; }
+    .review-source {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin-bottom: .9rem;
+    }
+    .review-source-icon {
+      width: 28px; height: 28px;
+      background: var(--navy);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem;
+      color: var(--white);
+      font-weight: 700;
+      font-family: 'Oswald', sans-serif;
+    }
+    .review-source-name { font-size: .75rem; font-weight: 700; color: var(--muted); letter-spacing: .04em; }
+    .stars-row { color: var(--gold); font-size: .85rem; letter-spacing: .08em; margin-bottom: .9rem; }
     .review-text {
-      font-size: .88rem;
-      color: var(--esp-lt);
-      line-height: 1.7;
+      font-size: .9rem;
+      color: var(--warm);
+      line-height: 1.75;
       font-style: italic;
       margin-bottom: 1rem;
     }
-    .reviewer { font-size: .8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+    .reviewer-name {
+      font-size: .75rem;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+    .reviewer-detail { font-size: .7rem; color: var(--muted); margin-top: .1rem; }
 
-    /* ── CTA ── */
+    /* ─── CTA ─── */
     .cta {
-      background: var(--red);
-      padding: 5rem 2rem;
+      background: var(--navy-dk);
+      padding: 5.5rem 2rem;
       text-align: center;
       position: relative;
       overflow: hidden;
     }
     .cta::before {
-      content: '☕';
-      position: absolute;
-      left: 5%;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 8rem;
-      opacity: .08;
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        45deg, transparent, transparent 30px,
+        rgba(255,255,255,.015) 30px, rgba(255,255,255,.015) 31px
+      );
     }
-    .cta::after {
-      content: '🥞';
-      position: absolute;
-      right: 5%;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 8rem;
-      opacity: .08;
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-eyebrow {
+      font-family: 'Oswald', sans-serif;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold-lt);
+      margin-bottom: .8rem;
     }
     .cta h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      color: #fff;
-      letter-spacing: .04em;
-      margin-bottom: 1rem;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: .8rem;
+      line-height: 1.15;
     }
-    .cta p { font-size: 1.1rem; color: rgba(255,255,255,.8); margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
-    .btn-white { background: #fff; color: var(--red); }
-    .btn-white:hover { background: var(--cream); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,.2); }
-    .btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,.5); }
-    .btn-outline-white:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+    .cta h2 strong {
+      font-style: normal;
+      color: var(--gold-lt);
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: .6em;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .cta p { font-size: 1rem; color: rgba(255,255,255,.55); margin-bottom: 2.5rem; max-width: 460px; margin-left: auto; margin-right: auto; }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-    /* ── HOURS & LOCATION ── */
-    .location { background: var(--esp); padding: 5rem 2rem; }
+    /* ─── HOURS / LOCATION ─── */
+    .location { background: var(--cream2); padding: 5.5rem 2rem; }
     .location-inner {
-      max-width: 1000px;
+      max-width: 1100px;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: 5rem;
     }
-    .loc-col h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1.8rem;
-      color: var(--gold);
-      letter-spacing: .08em;
-      margin-bottom: 1.5rem;
+
+    .loc-card {
+      background: var(--white);
+      border-radius: 6px;
+      border: 1px solid var(--cream3);
+      overflow: hidden;
     }
-    .hours-table { width: 100%; border-collapse: collapse; }
-    .hours-table tr { border-bottom: 1px solid rgba(255,255,255,.06); }
-    .hours-table tr:last-child { border-bottom: none; }
-    .hours-table td { padding: .6rem 0; font-size: .88rem; }
-    .hours-table td:first-child { color: #c4a880; }
-    .hours-table td:last-child { color: var(--cream); font-weight: 600; text-align: right; }
-    .hours-table tr.today td { color: var(--gold); }
-    .loc-detail {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-    }
-    .loc-icon {
-      width: 40px;
-      height: 40px;
-      background: rgba(255,255,255,.06);
-      border-radius: 50%;
+    .loc-card-header {
+      background: var(--navy);
+      padding: 1.2rem 1.5rem;
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: .75rem;
+    }
+    .loc-card-header h3 {
+      font-family: 'Oswald', sans-serif;
       font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .loc-card-body { padding: 1.5rem; }
+
+    .hours-table { width: 100%; border-collapse: collapse; }
+    .hours-table tr { border-bottom: 1px solid var(--cream2); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: .6rem 0; font-size: .88rem; vertical-align: middle; }
+    .hours-table td:first-child { color: var(--muted); font-weight: 500; }
+    .hours-table td:last-child { text-align: right; color: var(--navy-dk); font-weight: 600; }
+    .day-dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: #c0c0c0;
+      margin-right: .5rem;
+      vertical-align: middle;
+    }
+    .day-dot.open { background: #1e7a3a; }
+
+    .contact-list { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: .9rem;
+    }
+    .contact-icon {
+      width: 38px; height: 38px;
+      background: var(--cream2);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
       flex-shrink: 0;
+      border: 1px solid var(--cream3);
     }
-    .loc-label { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: .2rem; }
-    .loc-text { font-size: .92rem; color: var(--cream); line-height: 1.6; }
-    .loc-text a { color: #c4a880; text-decoration: none; }
+    .contact-lbl { font-size: .67rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: .15rem; }
+    .contact-val { font-size: .92rem; color: var(--navy-dk); font-weight: 600; line-height: 1.5; }
+    .contact-val a { color: var(--crimson); text-decoration: none; }
 
-    /* ── FOOTER ── */
+    /* ─── FOOTER ─── */
     footer {
-      background: #111;
-      padding: 1.5rem 2rem;
+      background: var(--esp);
+      padding: 2.5rem 2rem;
       text-align: center;
-      font-size: .78rem;
-      color: rgba(255,255,255,.3);
     }
-    footer strong { color: rgba(255,255,255,.5); }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: .4rem;
+    }
+    .footer-logo span { color: var(--gold-lt); }
+    .footer-tagline {
+      font-family: 'Oswald', sans-serif;
+      font-size: .65rem;
+      font-weight: 600;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+      margin-bottom: 1.5rem;
+    }
+    .footer-info {
+      font-size: .8rem;
+      color: rgba(255,255,255,.35);
+      line-height: 1.7;
+    }
+    .footer-info a { color: rgba(255,255,255,.5); text-decoration: none; }
+    .footer-divider { margin: 1.5rem auto; width: 40px; height: 1px; background: rgba(255,255,255,.1); }
+    .footer-credit { font-size: .7rem; color: rgba(255,255,255,.2); margin-top: 1.5rem; }
+    .footer-credit strong { color: rgba(255,255,255,.4); }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 1000px) {
       .hero-inner { grid-template-columns: 1fr; }
-      .info-card { max-width: 420px; }
-      .menu-grid { grid-template-columns: 1fr 1fr; }
+      .hero::after { display: none; }
+      .sig-grid { grid-template-columns: 1fr 1fr; }
+      .feature-inner { grid-template-columns: 1fr; gap: 3rem; }
       .about-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .location-inner { grid-template-columns: 1fr; gap: 3rem; }
-      .reviews-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr 1fr; }
+      .location-inner { grid-template-columns: 1fr; gap: 2rem; }
     }
-    @media (max-width: 600px) {
-      .menu-grid { grid-template-columns: 1fr; }
+    @media (max-width: 640px) {
+      .sig-grid { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
       nav { display: none; }
-      .strip { gap: 1.5rem; }
+      .rating-strip { gap: 1.5rem; }
+      .rating-div { display: none; }
+      .topbar { font-size: .7rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- TOP BAR -->
+  <!-- ── TOPBAR ── -->
   <div class="topbar">
-    <span>📍 81 Fairhaven Rd, Mattapoisett, MA</span>
-    <span>📞 <a href="tel:5087583400"><strong>(508) 758-3400</strong></a> &nbsp;|&nbsp; Mon–Sat 6AM–2PM · Sun 7AM–1PM</span>
+    <div class="topbar-left">
+      <span>📍 81 Fairhaven Rd (Rt. 6), Mattapoisett, MA 02739</span>
+      <span>Mon–Sat: 6AM–2PM &nbsp;·&nbsp; Sun: 7AM–1PM</span>
+    </div>
+    <div>
+      📞 <a href="tel:5087583400">(508) 758-3400</a>
+      &nbsp;·&nbsp; Walk-ins always welcome
+    </div>
   </div>
 
-  <!-- HEADER -->
+  <!-- ── HEADER ── -->
   <header>
-    <div class="logo">☕ Pandolfi's<span>&nbsp;Diner</span></div>
+    <a href="#" class="logo">
+      <div class="logo-circle">🍴</div>
+      <div class="logo-text-wrap">
+        <div class="logo-name">Pandolfi's</div>
+        <div class="logo-sub">Mattapoisett Diner</div>
+      </div>
+    </a>
     <nav>
       <a href="#menu">Menu</a>
-      <a href="#about">About</a>
+      <a href="#about">Our Story</a>
       <a href="#reviews">Reviews</a>
-      <a href="#location">Hours</a>
-      <a href="tel:5087583400" class="nav-cta">Call Us</a>
+      <a href="#location">Hours &amp; Location</a>
+      <a href="tel:5087583400" class="nav-cta">📞 Call Us</a>
     </nav>
   </header>
 
-  <!-- HERO -->
+  <!-- ── HERO ── -->
   <section class="hero">
     <div class="hero-inner">
-      <div class="hero-text">
-        <div class="hero-badge">🍳 Mattapoisett's Morning Tradition</div>
+
+      <!-- Left: Headline -->
+      <div class="hero-left">
+        <div class="hero-eyebrow">⭐ Mattapoisett's Favorite Breakfast Spot</div>
         <h1>
-          Breakfast<br />
-          Done <em>Right</em><br />
-          Every Day
+          Serious<br />
+          <em>Diner Food.</em><br />
+          Since Day One.
         </h1>
+        <div class="hero-stars">
+          <span class="star-row">★★★★½</span>
+          <span class="star-label"><strong>4.5 / 5 · 454 Google Reviews</strong><br />#2 Restaurant in Mattapoisett</span>
+        </div>
         <p class="hero-sub">
-          Fresh-cooked breakfasts and hearty lunches, served with a smile in the heart of Mattapoisett. No frills, no fuss — just honest food the way it's meant to be.
+          An old-school streamline diner on Route 6 — serving country breakfasts, homemade classics, and fresh-cooked lunches to Mattapoisett and the South Coast for over 50 years. Fresh coffee. Hefty mugs. No nonsense.
         </p>
         <div class="hero-actions">
-          <a href="#menu" class="btn btn-red">See Our Menu</a>
-          <a href="#location" class="btn btn-outline">Hours & Location</a>
+          <a href="#menu" class="btn btn-cream">See Our Menu</a>
+          <a href="#location" class="btn btn-ghost">Hours &amp; Location</a>
         </div>
       </div>
-      <div>
-        <div class="info-card">
-          <div class="info-card-header">
-            <h3>Come On In</h3>
-            <p>No reservations needed — walk-ins always welcome</p>
+
+      <!-- Right: Info card -->
+      <div class="hero-right">
+        <div class="hero-card">
+          <div class="card-logo-strip">
+            <!-- SVG Logo Recreation -->
+            <svg viewBox="0 0 220 220" width="110" height="110" style="display:block;margin:0 auto 1rem;">
+              <!-- Outer double ring -->
+              <circle cx="110" cy="110" r="106" fill="none" stroke="#0a1a2a" stroke-width="3"/>
+              <circle cx="110" cy="110" r="98" fill="none" stroke="#0a1a2a" stroke-width="1.5"/>
+              <!-- Navy fill -->
+              <circle cx="110" cy="110" r="94" fill="#1e4d7a"/>
+              <!-- Inner ring highlight -->
+              <circle cx="110" cy="110" r="94" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+              <!-- Fork (simplified path) -->
+              <g transform="rotate(-35, 85, 85)" opacity="0.75">
+                <!-- Fork handle -->
+                <rect x="82" y="65" width="6" height="55" rx="3" fill="white"/>
+                <!-- Fork tines -->
+                <rect x="77" y="40" width="3.5" height="28" rx="1.5" fill="white"/>
+                <rect x="82" y="40" width="3.5" height="28" rx="1.5" fill="white"/>
+                <rect x="87" y="40" width="3.5" height="28" rx="1.5" fill="white"/>
+                <!-- Fork base connector -->
+                <rect x="77" y="64" width="16" height="4" rx="2" fill="white"/>
+              </g>
+              <!-- Knife (simplified path) -->
+              <g transform="rotate(-35, 135, 150)" opacity="0.75">
+                <rect x="133" y="110" width="6" height="55" rx="3" fill="white"/>
+                <path d="M133,65 Q133,60 139,60 L139,112 Q133,115 133,112 Z" fill="white"/>
+              </g>
+              <!-- MATTAPOISETT DINER arc text -->
+              <defs>
+                <path id="bottomArc" d="M 30,140 A 90,90 0 0,0 190,140"/>
+              </defs>
+              <text fill="white" font-family="Arial, sans-serif" font-size="10.5" font-weight="700" letter-spacing="2.5">
+                <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">MATTAPOISETT DINER</textPath>
+              </text>
+              <!-- SERIOUS DINER FOOD arc text -->
+              <defs>
+                <path id="topArc" d="M 22,100 A 95,95 0 0,1 198,100"/>
+              </defs>
+              <text fill="#c9922e" font-family="Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="2.8">
+                <textPath href="#topArc" startOffset="50%" text-anchor="middle">SERIOUS DINER FOOD</textPath>
+              </text>
+              <!-- Pandolfi's script text -->
+              <text x="112" y="125" text-anchor="middle" fill="#8f1a2c"
+                font-family="Georgia, 'Times New Roman', serif"
+                font-size="30" font-style="italic" font-weight="bold">Pandolfi's</text>
+            </svg>
+            <div class="card-tagline">Serious Diner Food</div>
           </div>
-          <div class="info-card-body">
-            <div class="info-row">
-              <div class="info-icon">🕕</div>
+          <div class="card-body">
+            <div class="card-row">
+              <div class="card-icon">🕕</div>
               <div>
-                <div class="info-label">Hours</div>
-                <div class="info-value">
-                  Mon–Sat: 6:00 AM – 2:00 PM<br />
-                  Sunday: 7:00 AM – 1:00 PM
-                </div>
+                <div class="card-lbl">Hours Today</div>
+                <div class="card-val"><span class="open">● Open</span> · 6:00 AM – 2:00 PM</div>
               </div>
             </div>
-            <div class="info-row">
-              <div class="info-icon">📍</div>
+            <div class="card-row">
+              <div class="card-icon">📍</div>
               <div>
-                <div class="info-label">Location</div>
-                <div class="info-value">81 Fairhaven Rd<br />Mattapoisett, MA 02739</div>
+                <div class="card-lbl">Location</div>
+                <div class="card-val">81 Fairhaven Rd (Rt. 6)<br/>Mattapoisett, MA 02739</div>
               </div>
             </div>
-            <div class="info-row">
-              <div class="info-icon">📞</div>
+            <div class="card-row">
+              <div class="card-icon">☕</div>
               <div>
-                <div class="info-label">Phone</div>
-                <div class="info-value"><a href="tel:5087583400">(508) 758-3400</a></div>
+                <div class="card-lbl">Serving</div>
+                <div class="card-val">Breakfast &amp; Lunch Daily</div>
               </div>
             </div>
-            <div class="info-row">
-              <div class="info-icon">☕</div>
+            <div class="card-row">
+              <div class="card-icon">👋</div>
               <div>
-                <div class="info-label">Serving</div>
-                <div class="info-value">Breakfast & Lunch Daily</div>
+                <div class="card-lbl">Reservations</div>
+                <div class="card-val">Walk-ins always welcome — no wait list needed</div>
               </div>
             </div>
           </div>
-          <div class="info-card-cta">
-            <a href="tel:5087583400">Call (508) 758-3400</a>
+          <div class="card-footer">
+            <a href="tel:5087583400">📞 Call (508) 758-3400</a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STRIP -->
-  <div class="strip">
-    <span class="strip-item">Breakfast</span>
-    <span class="strip-item strip-dot">·</span>
-    <span class="strip-item">Lunch</span>
-    <span class="strip-item strip-dot">·</span>
-    <span class="strip-item">Made Fresh Daily</span>
-    <span class="strip-item strip-dot">·</span>
-    <span class="strip-item">Mattapoisett, MA</span>
-    <span class="strip-item strip-dot">·</span>
-    <span class="strip-item">Walk-Ins Welcome</span>
-  </div>
-
-  <!-- WAVE DOWN -->
-  <div class="wave" style="background:var(--cream);">
-    <svg viewBox="0 0 1440 48" preserveAspectRatio="none" style="height:48px;">
-      <path d="M0,48 L0,20 Q360,0 720,20 Q1080,40 1440,20 L1440,48 Z" fill="#fef9ec"/>
-    </svg>
-  </div>
-
-  <!-- MENU -->
-  <section class="menu" id="menu">
-    <div class="section-header">
-      <div class="section-eyebrow">What We Serve</div>
-      <h2 class="section-title">Classic Diner <em>Favorites</em></h2>
-      <p class="section-sub">Cooked to order, every plate made fresh. Just like it should be.</p>
-    </div>
-    <div class="menu-grid">
-
-      <div class="menu-card featured">
-        <div class="menu-badge">Fan Favorite</div>
-        <span class="menu-icon">🥞</span>
-        <h3>Breakfast Plates</h3>
-        <p>Start your morning right with a full plate, cooked the way you like it.</p>
-        <ul class="menu-items">
-          <li>Two Eggs Any Style</li>
-          <li>Pancakes & Waffles</li>
-          <li>French Toast</li>
-          <li>The Full Breakfast</li>
-          <li>Omelets Made to Order</li>
-        </ul>
-      </div>
-
-      <div class="menu-card">
-        <span class="menu-icon">🥓</span>
-        <h3>Sides & Extras</h3>
-        <p>Build your perfect plate with all the classics on the side.</p>
-        <ul class="menu-items">
-          <li>Bacon, Sausage & Ham</li>
-          <li>Home Fries & Hash Browns</li>
-          <li>Toast & English Muffins</li>
-          <li>Corned Beef Hash</li>
-          <li>Fresh Fruit Cup</li>
-        </ul>
-      </div>
-
-      <div class="menu-card">
-        <span class="menu-icon">☕</span>
-        <h3>Hot Drinks</h3>
-        <p>Bottomless coffee and hot drinks to start your day right.</p>
-        <ul class="menu-items">
-          <li>Fresh-Brewed Coffee</li>
-          <li>Hot Tea & Cocoa</li>
-          <li>Orange Juice</li>
-          <li>Milk & Chocolate Milk</li>
-          <li>Hot Chocolate</li>
-        </ul>
-      </div>
-
-      <div class="menu-card">
-        <span class="menu-icon">🥪</span>
-        <h3>Sandwiches & Wraps</h3>
-        <p>Hearty lunch options to power you through the afternoon.</p>
-        <ul class="menu-items">
-          <li>BLT on Toast</li>
-          <li>Club Sandwich</li>
-          <li>Grilled Cheese</li>
-          <li>Breakfast Sandwich</li>
-          <li>Turkey & Swiss</li>
-        </ul>
-      </div>
-
-      <div class="menu-card">
-        <span class="menu-icon">🍔</span>
-        <h3>Burgers & Dogs</h3>
-        <p>Real diner burgers, griddled fresh and built the way you want them.</p>
-        <ul class="menu-items">
-          <li>Classic Cheeseburger</li>
-          <li>Bacon Burger</li>
-          <li>Hot Dog & Chili Dog</li>
-          <li>Served with Fries or Rings</li>
-        </ul>
-      </div>
-
-      <div class="menu-card">
-        <span class="menu-icon">🥣</span>
-        <h3>Lighter Options</h3>
-        <p>Not looking for a full plate? We've got you covered.</p>
-        <ul class="menu-items">
-          <li>Oatmeal & Granola</li>
-          <li>Yogurt Parfait</li>
-          <li>Muffins & Pastries</li>
-          <li>Bagel with Cream Cheese</li>
-          <li>House Soup of the Day</li>
-        </ul>
       </div>
 
     </div>
   </section>
 
-  <!-- WAVE DARK -->
-  <div class="wave" style="background:var(--cream);">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px;">
-      <path d="M0,0 Q360,60 720,30 Q1080,0 1440,50 L1440,60 L0,60 Z" fill="#2c2010"/>
+  <!-- ── RATING STRIP ── -->
+  <div class="rating-strip">
+    <div class="rating-item">
+      <div class="rating-num">4.5★</div>
+      <div class="rating-text"><strong>Google Rating</strong>454 Reviews</div>
+    </div>
+    <div class="rating-div"></div>
+    <div class="rating-item">
+      <div class="rating-num">#2</div>
+      <div class="rating-text"><strong>in Mattapoisett</strong>of 15 Restaurants</div>
+    </div>
+    <div class="rating-div"></div>
+    <div class="rating-item">
+      <div class="rating-num">50+</div>
+      <div class="rating-text"><strong>Years Serving</strong>the South Coast</div>
+    </div>
+    <div class="rating-div"></div>
+    <div class="rating-item">
+      <div class="rating-num">6AM</div>
+      <div class="rating-text"><strong>First Coffee</strong>Mon – Sat</div>
+    </div>
+  </div>
+
+  <!-- WAVE -->
+  <div class="wave" style="background:var(--crimson);">
+    <svg viewBox="0 0 1440 40" preserveAspectRatio="none" style="height:40px;">
+      <path d="M0,40 L0,15 Q360,40 720,15 Q1080,0 1440,20 L1440,40 Z" fill="var(--cream)"/>
     </svg>
   </div>
 
-  <!-- ABOUT -->
+  <!-- ── SIGNATURE DISHES ── -->
+  <section class="signatures" id="menu">
+    <div style="max-width:1200px;margin:0 auto;">
+      <div class="section-header center">
+        <div class="section-eyebrow">What We're Known For</div>
+        <h2 class="section-title">Pandolfi's <em>Signatures</em></h2>
+        <p class="section-sub">Made to order, every time — the dishes that keep Mattapoisett coming back through the door.</p>
+      </div>
+      <div class="sig-grid">
+
+        <div class="sig-card featured">
+          <div class="sig-img">
+            🧀
+            <span class="sig-badge">Pandolfi's Original</span>
+          </div>
+          <div class="sig-body">
+            <h3>The Linguica Cheese Roll</h3>
+            <p>A Pandolfi's institution. Griddled Portuguese linguica sausage tucked into a fresh-baked cheese roll — the dish people drive to Mattapoisett for. One of the last places you'll find it done right.</p>
+          </div>
+          <div class="sig-tags">
+            <span class="sig-tag">Portuguese</span>
+            <span class="sig-tag">Breakfast</span>
+            <span class="sig-tag">Local Favorite</span>
+          </div>
+        </div>
+
+        <div class="sig-card">
+          <div class="sig-img">
+            🍳
+            <span class="sig-badge gold">Most Ordered</span>
+          </div>
+          <div class="sig-body">
+            <h3>Eggs Benedict "Benny's"</h3>
+            <p>Perfectly poached eggs with velvety hollandaise — offered in multiple styles including the Parisian, Sausage Benny, and the Hawaiian. Brunch-worthy, served any morning of the week.</p>
+          </div>
+          <div class="sig-tags">
+            <span class="sig-tag">Breakfast</span>
+            <span class="sig-tag">Multiple Styles</span>
+          </div>
+        </div>
+
+        <div class="sig-card">
+          <div class="sig-img">🍂</div>
+          <div class="sig-body">
+            <h3>The Harvest Omelet</h3>
+            <p>A true Pandolfi's original — a fluffy, made-to-order omelet with sautéed apples folded right in. Sweet, savory, and unlike anything else on the South Coast breakfast scene.</p>
+          </div>
+          <div class="sig-tags">
+            <span class="sig-tag">Breakfast</span>
+            <span class="sig-tag">Unique</span>
+            <span class="sig-tag">Vegetarian</span>
+          </div>
+        </div>
+
+        <div class="sig-card">
+          <div class="sig-img">🥞</div>
+          <div class="sig-body">
+            <h3>Chocolate Chip Pancakes</h3>
+            <p>Thick, golden, loaded with chocolate chips and made fresh on the griddle. Served with real maple syrup. A weekend ritual for families across Mattapoisett and beyond.</p>
+          </div>
+          <div class="sig-tags">
+            <span class="sig-tag">Breakfast</span>
+            <span class="sig-tag">Family Favorite</span>
+          </div>
+        </div>
+
+        <div class="sig-card">
+          <div class="sig-img">
+            🦞
+            <span class="sig-badge">Seasonal</span>
+          </div>
+          <div class="sig-body">
+            <h3>Fresh Lobster Roll</h3>
+            <p>When it's in season, Pandolfi's doesn't mess around. Fresh local lobster on a griddled brioche roll with a light mayo toss. A proper New England summer lunch you won't forget.</p>
+          </div>
+          <div class="sig-tags">
+            <span class="sig-tag">Lunch</span>
+            <span class="sig-tag">New England</span>
+            <span class="sig-tag">Seasonal</span>
+          </div>
+        </div>
+
+        <div class="sig-card">
+          <div class="sig-img">
+            🌶️
+            <span class="sig-badge crimson">Award-Winning</span>
+          </div>
+          <div class="sig-body">
+            <h3>Award-Winning Chili</h3>
+            <p>The kind of chili that wins awards — rich, thick, and built from scratch. Plus homemade crispy hash that regulars order religiously. Lunch here is never an afterthought.</p>
+          </div>
+          <div class="sig-tags">
+            <span class="sig-tag">Lunch</span>
+            <span class="sig-tag">Award-Winning</span>
+            <span class="sig-tag">Homemade</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- More menu note -->
+      <div style="text-align:center;margin-top:2.5rem;">
+        <p style="font-size:.88rem;color:var(--muted);margin-bottom:1rem;">Full menu also includes crepes, omelets, fried clam plates, chowder, sandwiches, and more</p>
+        <a href="tel:5087583400" class="btn btn-crimson">📞 Call Ahead for Daily Specials</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE INTO DARK -->
+  <div class="wave" style="background:var(--cream);">
+    <svg viewBox="0 0 1440 55" preserveAspectRatio="none" style="height:55px;">
+      <path d="M0,0 Q360,55 720,25 Q1080,0 1440,40 L1440,55 L0,55 Z" fill="var(--navy-dk)"/>
+    </svg>
+  </div>
+
+  <!-- ── LOBSTER ROLL FEATURE ── -->
+  <section class="feature">
+    <div class="feature-inner">
+      <div class="feature-img">🦞</div>
+      <div class="feature-content">
+        <div class="section-eyebrow">A South Coast Summer Staple</div>
+        <h2 class="section-title">The Lobster Roll that <em>People Talk About</em></h2>
+        <div class="feature-body">
+          <p>
+            When Pandolfi's posts the lobster roll, the regulars know. Fresh local lobster — never frozen — served on a griddled brioche roll with a light hand on the mayo. Simple. Proper. The real thing.
+          </p>
+          <p>
+            It's a lunch you can't rush. Grab a seat at the counter, order a coffee refill, and take your time. That's the Pandolfi's way.
+          </p>
+        </div>
+        <div class="feature-detail">
+          <div class="feature-detail-item">
+            <span>Lobster</span>
+            Fresh &amp; Local
+          </div>
+          <div class="feature-detail-item">
+            <span>Roll</span>
+            Griddled Brioche
+          </div>
+          <div class="feature-detail-item">
+            <span>Availability</span>
+            Summer Season
+          </div>
+        </div>
+        <div style="margin-top:2rem;">
+          <a href="tel:5087583400" class="btn btn-cream">Call to Check Availability</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE BACK TO CREAM -->
+  <div class="wave" style="background:var(--navy-dk);">
+    <svg viewBox="0 0 1440 55" preserveAspectRatio="none" style="height:55px;">
+      <path d="M0,55 Q360,0 720,30 Q1080,55 1440,10 L1440,0 L0,0 Z" fill="var(--cream2)"/>
+    </svg>
+  </div>
+
+  <!-- ── ABOUT ── -->
   <section class="about" id="about">
     <div class="about-inner">
-      <div class="about-img">🍳</div>
       <div class="about-content">
-        <div class="section-eyebrow">A Mattapoisett Institution</div>
-        <h2 class="section-title">The Diner Mattapoisett <em>Counts On</em></h2>
+        <div class="section-eyebrow">Our Story</div>
+        <h2 class="section-title">One of the <em>Last Real Diners</em> on the South Coast</h2>
         <div class="about-body">
           <p>
-            Pandolfi's Diner has been a cornerstone of Mattapoisett's community for generations. From early-rising fishermen to families grabbing Sunday breakfast, we've always been the place where the coffee's hot, the food is real, and everyone knows your name.
+            Pandolfi's Mattapoisett Diner has been an anchor of this community for over 50 years. Parked right on Route 6, it's the kind of place that was here when your parents were growing up, and it'll be here for your kids too.
           </p>
           <p>
-            Every plate that leaves our kitchen is made to order — no shortcuts, no frozen shortcuts. Just good ingredients, a hot griddle, and a team that cares about sending you out the door with a full stomach and a smile.
+            This is a real streamline diner — the old-school kind. Fresh coffee comes in hefty white mugs and it never stops. Every plate is made to order, every morning, no exceptions. The home fries are crispy. The omelets are fat and golden. The linguica cheese rolls are legendary.
           </p>
           <p>
-            Walk-ins always welcome. Bring the kids, bring the crew, or just bring yourself. There's always a seat at Pandolfi's.
+            People come from all over the South Coast — some for the famous chili, some for the Benny's, some just for the rosemary home fries. Whatever brings you in, you'll leave with a full stomach and a reason to come back.
           </p>
         </div>
-        <div class="about-stats">
+        <div class="about-pull">
+          <p>"Best breakfast anywhere. Hot coffee, real food, and they actually cook it fresh. One of the last old-fashioned diners around."</p>
+          <cite>— Tripadvisor Review</cite>
+        </div>
+      </div>
+
+      <div class="about-stats">
+        <div class="stat-card highlight">
+          <div class="stat-icon crimson">⭐</div>
           <div>
-            <div class="about-stat-num">6AM</div>
-            <div class="about-stat-label">First coffee poured</div>
+            <div class="stat-num crimson">4.5★</div>
+            <div class="stat-desc">Google rating — 454 reviews and counting</div>
           </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon navy">🏆</div>
           <div>
-            <div class="about-stat-num">100%</div>
-            <div class="about-stat-label">Made to order</div>
+            <div class="stat-num">#2</div>
+            <div class="stat-desc">Ranked #2 of 15 restaurants in Mattapoisett</div>
           </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon gold">☕</div>
           <div>
-            <div class="about-stat-num">7</div>
-            <div class="about-stat-label">Days a week</div>
+            <div class="stat-num">50+</div>
+            <div class="stat-desc">Years of fresh coffee and real diner breakfasts</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon navy">🍳</div>
+          <div>
+            <div class="stat-num">7</div>
+            <div class="stat-desc">Days a week — breakfast and lunch, always fresh</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon crimson">🌶️</div>
+          <div>
+            <div class="stat-num">1</div>
+            <div class="stat-desc">Award-winning chili recipe — made from scratch daily</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WAVE BACK -->
-  <div class="wave" style="background:var(--esp);">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px;">
-      <path d="M0,60 Q360,0 720,30 Q1080,60 1440,10 L1440,0 L0,0 Z" fill="#f5edd8"/>
+  <!-- ── REVIEWS ── -->
+  <section class="reviews" id="reviews">
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="section-header center">
+        <div class="section-eyebrow">What People Are Saying</div>
+        <h2 class="section-title">Mattapoisett's <em>Verdict</em></h2>
+        <p class="section-sub">454 Google reviews, 73 on Tripadvisor, 237 on Restaurantji — the South Coast has spoken.</p>
+      </div>
+      <div class="reviews-grid">
+
+        <div class="review-card">
+          <div class="review-source">
+            <div class="review-source-icon">G</div>
+            <div class="review-source-name">Google Reviews</div>
+          </div>
+          <div class="stars-row">★★★★★</div>
+          <p class="review-text">"Best breakfast anywhere. The linguica cheese roll is like nothing else — and the home fries are crispy exactly how they should be. We come every Saturday without fail."</p>
+          <div class="reviewer-name">Mattapoisett Regular</div>
+          <div class="reviewer-detail">Google · 5 Stars</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-source">
+            <div class="review-source-icon">T</div>
+            <div class="review-source-name">Tripadvisor</div>
+          </div>
+          <div class="stars-row">★★★★★</div>
+          <p class="review-text">"One of the last old-fashioned diners around. The coffee is always hot in a real diner mug, the Harvest Omelet with the sautéed apples is something I've never had anywhere else. Truly special."</p>
+          <div class="reviewer-name">South Coast Visitor</div>
+          <div class="reviewer-detail">Tripadvisor · 5 Stars</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-source">
+            <div class="review-source-icon">G</div>
+            <div class="review-source-name">Google Reviews</div>
+          </div>
+          <div class="stars-row">★★★★★</div>
+          <p class="review-text">"Great retro diner — good food, really nice people. The Benny's are excellent and the award-winning chili is no joke. Portions are generous and prices are completely reasonable. Deserves every star."</p>
+          <div class="reviewer-name">Local Breakfast Fan</div>
+          <div class="reviewer-detail">Google · 5 Stars</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-source">
+            <div class="review-source-icon">R</div>
+            <div class="review-source-name">Restaurantji</div>
+          </div>
+          <div class="stars-row">★★★★★</div>
+          <p class="review-text">"The chocolate chip pancakes are worth the drive alone. Fluffy, hot off the griddle, real maple syrup. My kids ask for Pandolfi's by name on Sunday mornings. That says everything."</p>
+          <div class="reviewer-name">Family from Wareham</div>
+          <div class="reviewer-detail">Restaurantji · 5 Stars</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-source">
+            <div class="review-source-icon">G</div>
+            <div class="review-source-name">Google Reviews</div>
+          </div>
+          <div class="stars-row">★★★★★</div>
+          <p class="review-text">"Came in for the lobster roll after seeing it on their Facebook and it did not disappoint. Fresh lobster, perfect brioche roll, light on the mayo. A proper New England lunch. We'll be back."</p>
+          <div class="reviewer-name">Summer Visitor</div>
+          <div class="reviewer-detail">Google · 5 Stars</div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-source">
+            <div class="review-source-icon">T</div>
+            <div class="review-source-name">Tripadvisor</div>
+          </div>
+          <div class="stars-row">★★★★★</div>
+          <p class="review-text">"Homemade hash, crispy and salty — exactly what great hash is supposed to be. The staff is friendly, service is fast, and there's always a good crowd in the morning. A real community diner."</p>
+          <div class="reviewer-name">Early Morning Regular</div>
+          <div class="reviewer-detail">Tripadvisor · 5 Stars</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ── -->
+  <section class="cta">
+    <div class="cta-inner">
+      <div class="cta-eyebrow">No Reservations Needed</div>
+      <h2>
+        <strong>Come On In</strong>
+        "We'll Have the Coffee Ready."
+      </h2>
+      <p>Walk-ins always welcome, every day of the week. Pull up a stool at the counter or grab a booth — there's always room at Pandolfi's.</p>
+      <div class="cta-buttons">
+        <a href="tel:5087583400" class="btn btn-cream">📞 (508) 758-3400</a>
+        <a href="#location" class="btn btn-ghost">Hours &amp; Directions</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVE -->
+  <div class="wave" style="background:var(--navy-dk);">
+    <svg viewBox="0 0 1440 48" preserveAspectRatio="none" style="height:48px;">
+      <path d="M0,0 L0,30 Q360,48 720,20 Q1080,0 1440,35 L1440,0 Z" fill="var(--cream2)"/>
     </svg>
   </div>
 
-  <!-- REVIEWS -->
-  <section class="reviews" id="reviews">
-    <div class="section-header">
-      <div class="section-eyebrow">What People Are Saying</div>
-      <h2 class="section-title">The Town <em>Loves It</em></h2>
-    </div>
-    <div class="reviews-grid">
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">"Best breakfast in the area, hands down. The eggs are always perfect and the home fries are crispy just how I like them. We come every Sunday morning."</p>
-        <div class="reviewer">— Local Regular</div>
-      </div>
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">"A true diner experience. The coffee is always hot, the staff is friendly, and the food is exactly what you want on a Saturday morning. Wouldn't go anywhere else."</p>
-        <div class="reviewer">— Mattapoisett Resident</div>
-      </div>
-      <div class="review-card">
-        <div class="stars">★★★★★</div>
-        <p class="review-text">"Nothing fancy — just really good food at a fair price. The pancakes are incredible and the portions are generous. This is what a diner is supposed to be."</p>
-        <div class="reviewer">— Happy Customer</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta">
-    <h2>Come On In — We'll Have the Coffee Ready</h2>
-    <p>No reservations, no waiting list. Just show up, grab a seat, and let us take care of the rest.</p>
-    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
-      <a href="tel:5087583400" class="btn btn-white">📞 (508) 758-3400</a>
-      <a href="#location" class="btn btn-outline-white">See Hours & Location</a>
-    </div>
-  </section>
-
-  <!-- HOURS & LOCATION -->
+  <!-- ── HOURS & LOCATION ── -->
   <section class="location" id="location">
-    <div class="location-inner">
-      <div class="loc-col">
-        <h3>Hours</h3>
-        <table class="hours-table">
-          <tr><td>Monday</td><td>6:00 AM – 2:00 PM</td></tr>
-          <tr><td>Tuesday</td><td>6:00 AM – 2:00 PM</td></tr>
-          <tr><td>Wednesday</td><td>6:00 AM – 2:00 PM</td></tr>
-          <tr><td>Thursday</td><td>6:00 AM – 2:00 PM</td></tr>
-          <tr><td>Friday</td><td>6:00 AM – 2:00 PM</td></tr>
-          <tr><td>Saturday</td><td>6:00 AM – 2:00 PM</td></tr>
-          <tr><td>Sunday</td><td>7:00 AM – 1:00 PM</td></tr>
-        </table>
+    <div style="max-width:1100px;margin:0 auto;">
+      <div class="section-header center" style="margin-bottom:2.5rem;">
+        <div class="section-eyebrow">Find Us</div>
+        <h2 class="section-title">Hours <em>&amp;</em> Location</h2>
       </div>
-      <div class="loc-col">
-        <h3>Find Us</h3>
-        <div class="loc-detail">
-          <div class="loc-icon">📍</div>
-          <div>
-            <div class="loc-label">Address</div>
-            <div class="loc-text">81 Fairhaven Rd<br />Mattapoisett, MA 02739</div>
+      <div class="location-inner">
+
+        <!-- Hours -->
+        <div class="loc-card">
+          <div class="loc-card-header">
+            <span>🕕</span>
+            <h3>Hours of Operation</h3>
+          </div>
+          <div class="loc-card-body">
+            <table class="hours-table">
+              <tr>
+                <td><span class="day-dot open"></span>Monday</td>
+                <td>6:00 AM – 2:00 PM</td>
+              </tr>
+              <tr>
+                <td><span class="day-dot open"></span>Tuesday</td>
+                <td>6:00 AM – 2:00 PM</td>
+              </tr>
+              <tr>
+                <td><span class="day-dot open"></span>Wednesday</td>
+                <td>6:00 AM – 2:00 PM</td>
+              </tr>
+              <tr>
+                <td><span class="day-dot open"></span>Thursday</td>
+                <td>6:00 AM – 2:00 PM</td>
+              </tr>
+              <tr>
+                <td><span class="day-dot open"></span>Friday</td>
+                <td>6:00 AM – 2:00 PM</td>
+              </tr>
+              <tr>
+                <td><span class="day-dot open"></span>Saturday</td>
+                <td>6:00 AM – 2:00 PM</td>
+              </tr>
+              <tr>
+                <td><span class="day-dot open"></span>Sunday</td>
+                <td>7:00 AM – 1:00 PM</td>
+              </tr>
+            </table>
+            <div style="margin-top:1.5rem;padding:1rem;background:var(--cream);border-radius:4px;border:1px solid var(--cream3);">
+              <p style="font-size:.83rem;color:var(--muted);line-height:1.6;">
+                ☕ <strong>Hot tip:</strong> Come early on weekends — Pandolfi's gets busy fast, especially after 9AM on Saturdays.
+              </p>
+            </div>
           </div>
         </div>
-        <div class="loc-detail">
-          <div class="loc-icon">📞</div>
-          <div>
-            <div class="loc-label">Phone</div>
-            <div class="loc-text"><a href="tel:5087583400">(508) 758-3400</a></div>
+
+        <!-- Contact & Location -->
+        <div class="loc-card">
+          <div class="loc-card-header">
+            <span>📍</span>
+            <h3>Come Find Us</h3>
+          </div>
+          <div class="loc-card-body">
+            <ul class="contact-list">
+              <li class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div>
+                  <div class="contact-lbl">Address</div>
+                  <div class="contact-val">81 Fairhaven Rd (Route 6)<br/>Mattapoisett, MA 02739</div>
+                </div>
+              </li>
+              <li class="contact-item">
+                <div class="contact-icon">📞</div>
+                <div>
+                  <div class="contact-lbl">Phone</div>
+                  <div class="contact-val"><a href="tel:5087583400">(508) 758-3400</a></div>
+                </div>
+              </li>
+              <li class="contact-item">
+                <div class="contact-icon">🚗</div>
+                <div>
+                  <div class="contact-lbl">Parking</div>
+                  <div class="contact-val">Free lot on site — plenty of space</div>
+                </div>
+              </li>
+              <li class="contact-item">
+                <div class="contact-icon">🐕</div>
+                <div>
+                  <div class="contact-lbl">Dogs &amp; Families</div>
+                  <div class="contact-val">Dogs welcome on the outdoor patio · Kid-friendly inside</div>
+                </div>
+              </li>
+              <li class="contact-item">
+                <div class="contact-icon">💳</div>
+                <div>
+                  <div class="contact-lbl">Payment</div>
+                  <div class="contact-val">Cash, cards, Apple Pay accepted</div>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="loc-detail">
-          <div class="loc-icon">🚗</div>
-          <div>
-            <div class="loc-label">Parking</div>
-            <div class="loc-text">Free parking available on site</div>
-          </div>
-        </div>
-        <div class="loc-detail">
-          <div class="loc-icon">👋</div>
-          <div>
-            <div class="loc-label">Walk-Ins</div>
-            <div class="loc-text">Always welcome — no reservations needed</div>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ── FOOTER ── -->
   <footer>
-    <strong>Pandolfi's Diner</strong> — 81 Fairhaven Rd, Mattapoisett, MA · (508) 758-3400 · Mon–Sat 6AM–2PM · Sun 7AM–1PM
-    <br /><br />
-    <span style="font-size:.7rem;opacity:.5;">Demo site — designed by <strong>Harborbuilt Technical Services</strong> · harborbuilt.co</span>
+    <div class="footer-logo">Pandolfi's <span>Diner</span></div>
+    <div class="footer-tagline">Serious Diner Food · Mattapoisett, MA</div>
+    <div class="footer-info">
+      81 Fairhaven Rd (Route 6) · Mattapoisett, MA 02739<br/>
+      <a href="tel:5087583400">(508) 758-3400</a> &nbsp;·&nbsp; Mon–Sat: 6AM–2PM &nbsp;·&nbsp; Sun: 7AM–1PM<br/>
+      Walk-ins always welcome
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-credit">Demo site designed by <strong>Harborbuilt Technical Services</strong> · harborbuilt.co</div>
   </footer>
 
 </body>
