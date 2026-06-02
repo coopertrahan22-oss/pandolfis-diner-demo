@@ -844,6 +844,160 @@
     .footer-credit { font-size: .7rem; color: rgba(255,255,255,.2); margin-top: 1.5rem; }
     .footer-credit strong { color: rgba(255,255,255,.4); }
 
+    /* ─── 3D / ANIMATION ADDITIONS ─── */
+
+    /* Hero canvas overlay */
+    #hero-canvas {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      z-index: 0; pointer-events: none;
+    }
+    .hero::after { z-index: 1; }
+    .hero-inner { position: relative; z-index: 2; }
+
+    /* Animated gradient on hero headline em */
+    @keyframes gradShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .hero h1 em {
+      background: linear-gradient(90deg, var(--gold-lt) 0%, #fff 40%, var(--gold-lt) 70%, #ffd060 100%);
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradShift 4s ease infinite;
+    }
+
+    /* Eyebrow pulse */
+    @keyframes eyebrowPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(201,146,46,.5); }
+      60%       { box-shadow: 0 0 0 10px rgba(201,146,46,0); }
+    }
+    .hero-eyebrow { animation: eyebrowPulse 3s ease infinite; }
+
+    /* 3D tilt on sig-cards */
+    .sig-card {
+      position: relative;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .sig-gloss {
+      position: absolute; inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Flip review cards */
+    .review-flip-wrapper {
+      perspective: 1000px;
+      min-height: 300px;
+    }
+    .review-flip-inner {
+      position: relative;
+      width: 100%; min-height: 300px;
+      transform-style: preserve-3d;
+      transition: transform .72s cubic-bezier(.4,0,.2,1);
+      cursor: pointer;
+    }
+    .review-flip-wrapper:hover .review-flip-inner { transform: rotateY(180deg); }
+    .review-flip-front, .review-flip-back {
+      position: absolute; inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 6px;
+      padding: 2rem 1.8rem;
+    }
+    .review-flip-front {
+      background: var(--cream);
+      border: 1px solid var(--cream3);
+      display: flex; flex-direction: column;
+    }
+    .review-flip-front::before {
+      content: '\201C';
+      position: absolute;
+      top: .8rem; right: 1.4rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem; color: var(--crimson);
+      opacity: .12; line-height: 1;
+    }
+    .review-flip-back {
+      transform: rotateY(180deg);
+      background: linear-gradient(135deg, var(--navy-dk) 0%, #1a4060 100%);
+      border: 1px solid rgba(201,146,46,.3);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+    }
+    .flip-back-icon  { font-size: 3rem; margin-bottom: .9rem; }
+    .flip-back-stars { font-size: 1.9rem; color: var(--gold-lt); letter-spacing: .1em; margin-bottom: .4rem; }
+    .flip-back-score {
+      font-family: 'Oswald', sans-serif;
+      font-size: 2.8rem; font-weight: 700; color: var(--white); line-height: 1; margin-bottom: .4rem;
+    }
+    .flip-back-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .18em;
+      text-transform: uppercase; color: rgba(255,255,255,.4);
+    }
+    .flip-hint {
+      margin-top: auto; font-size: .65rem;
+      color: var(--muted); letter-spacing: .05em; text-align: right;
+    }
+
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translate3d(0, 36px, 0);
+      transition: opacity .75s cubic-bezier(.4,0,.2,1),
+                  transform .75s cubic-bezier(.4,0,.2,1);
+    }
+    .reveal.visible { opacity: 1; transform: translate3d(0,0,0); }
+    .d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; }
+    .d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
+    .d5 { transition-delay: .5s; } .d6 { transition-delay: .6s; }
+
+    /* About gradient mesh blobs */
+    .about { position: relative; overflow: hidden; }
+    .about-glow {
+      position: absolute; border-radius: 50%; pointer-events: none;
+    }
+    .about-glow-a {
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(143,26,44,.07) 0%, transparent 65%);
+      top: -200px; right: -200px;
+      animation: meshBlob 12s ease-in-out infinite;
+    }
+    .about-glow-b {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(30,77,122,.09) 0%, transparent 65%);
+      bottom: -100px; left: -100px;
+      animation: meshBlob 9s ease-in-out infinite reverse;
+    }
+    @keyframes meshBlob {
+      0%, 100% { transform: translate(0,0) scale(1); }
+      33%       { transform: translate(-30px, 20px) scale(1.08); }
+      66%       { transform: translate(20px, -30px) scale(.95); }
+    }
+    .about-inner { position: relative; z-index: 1; }
+
+    /* CTA radial glow */
+    .cta-glow {
+      position: absolute; width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(201,146,46,.12) 0%, transparent 60%);
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      pointer-events: none;
+      animation: ctaGlow 6s ease-in-out infinite;
+    }
+    @keyframes ctaGlow {
+      0%, 100% { opacity: .6; transform: translate(-50%,-50%) scale(1); }
+      50%       { opacity: 1;  transform: translate(-50%,-50%) scale(1.25); }
+    }
+
+    /* Magnetic button base */
+    .btn { will-change: transform; }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1000px) {
       .hero-inner { grid-template-columns: 1fr; }
@@ -898,6 +1052,7 @@
 
   <!-- ── HERO ── -->
   <section class="hero">
+    <canvas id="hero-canvas"></canvas>
     <div class="hero-inner">
 
       <!-- Left: Headline -->
@@ -1050,11 +1205,8 @@
       </div>
       <div class="sig-grid">
 
-        <div class="sig-card featured">
-          <div class="sig-img">
-            🧀
-            <span class="sig-badge">Pandolfi's Original</span>
-          </div>
+        <div class="sig-card featured reveal d1">
+          <div class="sig-img">🧀<span class="sig-badge">Pandolfi's Original</span></div>
           <div class="sig-body">
             <h3>The Linguica Cheese Roll</h3>
             <p>A Pandolfi's institution. Griddled Portuguese linguica sausage tucked into a fresh-baked cheese roll — the dish people drive to Mattapoisett for. One of the last places you'll find it done right.</p>
@@ -1064,13 +1216,11 @@
             <span class="sig-tag">Breakfast</span>
             <span class="sig-tag">Local Favorite</span>
           </div>
+          <div class="sig-gloss"></div>
         </div>
 
-        <div class="sig-card">
-          <div class="sig-img">
-            🍳
-            <span class="sig-badge gold">Most Ordered</span>
-          </div>
+        <div class="sig-card reveal d2">
+          <div class="sig-img">🍳<span class="sig-badge gold">Most Ordered</span></div>
           <div class="sig-body">
             <h3>Eggs Benedict "Benny's"</h3>
             <p>Perfectly poached eggs with velvety hollandaise — offered in multiple styles including the Parisian, Sausage Benny, and the Hawaiian. Brunch-worthy, served any morning of the week.</p>
@@ -1079,9 +1229,10 @@
             <span class="sig-tag">Breakfast</span>
             <span class="sig-tag">Multiple Styles</span>
           </div>
+          <div class="sig-gloss"></div>
         </div>
 
-        <div class="sig-card">
+        <div class="sig-card reveal d3">
           <div class="sig-img">🍂</div>
           <div class="sig-body">
             <h3>The Harvest Omelet</h3>
@@ -1092,9 +1243,10 @@
             <span class="sig-tag">Unique</span>
             <span class="sig-tag">Vegetarian</span>
           </div>
+          <div class="sig-gloss"></div>
         </div>
 
-        <div class="sig-card">
+        <div class="sig-card reveal d1">
           <div class="sig-img">🥞</div>
           <div class="sig-body">
             <h3>Chocolate Chip Pancakes</h3>
@@ -1104,13 +1256,11 @@
             <span class="sig-tag">Breakfast</span>
             <span class="sig-tag">Family Favorite</span>
           </div>
+          <div class="sig-gloss"></div>
         </div>
 
-        <div class="sig-card">
-          <div class="sig-img">
-            🦞
-            <span class="sig-badge">Seasonal</span>
-          </div>
+        <div class="sig-card reveal d2">
+          <div class="sig-img">🦞<span class="sig-badge">Seasonal</span></div>
           <div class="sig-body">
             <h3>Fresh Lobster Roll</h3>
             <p>When it's in season, Pandolfi's doesn't mess around. Fresh local lobster on a griddled brioche roll with a light mayo toss. A proper New England summer lunch you won't forget.</p>
@@ -1120,13 +1270,11 @@
             <span class="sig-tag">New England</span>
             <span class="sig-tag">Seasonal</span>
           </div>
+          <div class="sig-gloss"></div>
         </div>
 
-        <div class="sig-card">
-          <div class="sig-img">
-            🌶️
-            <span class="sig-badge crimson">Award-Winning</span>
-          </div>
+        <div class="sig-card reveal d3">
+          <div class="sig-img">🌶️<span class="sig-badge crimson">Award-Winning</span></div>
           <div class="sig-body">
             <h3>Award-Winning Chili</h3>
             <p>The kind of chili that wins awards — rich, thick, and built from scratch. Plus homemade crispy hash that regulars order religiously. Lunch here is never an afterthought.</p>
@@ -1136,6 +1284,7 @@
             <span class="sig-tag">Award-Winning</span>
             <span class="sig-tag">Homemade</span>
           </div>
+          <div class="sig-gloss"></div>
         </div>
 
       </div>
@@ -1200,6 +1349,8 @@
 
   <!-- ── ABOUT ── -->
   <section class="about" id="about">
+    <div class="about-glow about-glow-a"></div>
+    <div class="about-glow about-glow-b"></div>
     <div class="about-inner">
       <div class="about-content">
         <div class="section-eyebrow">Our Story</div>
@@ -1225,8 +1376,8 @@
         <div class="stat-card highlight">
           <div class="stat-icon crimson">⭐</div>
           <div>
-            <div class="stat-num crimson">4.5★</div>
-            <div class="stat-desc">Google rating — 454 reviews and counting</div>
+            <div class="stat-num crimson" data-count="4.5" data-decimal="true" data-suffix="★">4.5★</div>
+            <div class="stat-desc">Google rating — <span data-count="454" data-suffix=" reviews">454 reviews</span> and counting</div>
           </div>
         </div>
         <div class="stat-card">
@@ -1239,7 +1390,7 @@
         <div class="stat-card">
           <div class="stat-icon gold">☕</div>
           <div>
-            <div class="stat-num">50+</div>
+            <div class="stat-num" data-count="50" data-suffix="+">50+</div>
             <div class="stat-desc">Years of fresh coffee and real diner breakfasts</div>
           </div>
         </div>
@@ -1269,72 +1420,127 @@
         <h2 class="section-title">Mattapoisett's <em>Verdict</em></h2>
         <p class="section-sub">454 Google reviews, 73 on Tripadvisor, 237 on Restaurantji — the South Coast has spoken.</p>
       </div>
+      <p style="text-align:center;font-size:.78rem;color:var(--muted);margin-bottom:2rem;letter-spacing:.05em;">Hover any card to flip it ↻</p>
       <div class="reviews-grid">
 
-        <div class="review-card">
-          <div class="review-source">
-            <div class="review-source-icon">G</div>
-            <div class="review-source-name">Google Reviews</div>
+        <!-- Card 1 -->
+        <div class="review-flip-wrapper reveal d1">
+          <div class="review-flip-inner">
+            <div class="review-flip-front">
+              <div class="review-source"><div class="review-source-icon">G</div><div class="review-source-name">Google Reviews</div></div>
+              <div class="stars-row">★★★★★</div>
+              <p class="review-text">"Best breakfast anywhere. The linguica cheese roll is like nothing else — and the home fries are crispy exactly how they should be. We come every Saturday without fail."</p>
+              <div class="reviewer-name">Mattapoisett Regular</div>
+              <div class="reviewer-detail">Google · 5 Stars</div>
+              <div class="flip-hint">Hover to flip ↻</div>
+            </div>
+            <div class="review-flip-back">
+              <div class="flip-back-icon">🧀</div>
+              <div class="flip-back-stars">★★★★★</div>
+              <div class="flip-back-score">5.0 / 5</div>
+              <div class="flip-back-label">Google Reviews</div>
+            </div>
           </div>
-          <div class="stars-row">★★★★★</div>
-          <p class="review-text">"Best breakfast anywhere. The linguica cheese roll is like nothing else — and the home fries are crispy exactly how they should be. We come every Saturday without fail."</p>
-          <div class="reviewer-name">Mattapoisett Regular</div>
-          <div class="reviewer-detail">Google · 5 Stars</div>
         </div>
 
-        <div class="review-card">
-          <div class="review-source">
-            <div class="review-source-icon">T</div>
-            <div class="review-source-name">Tripadvisor</div>
+        <!-- Card 2 -->
+        <div class="review-flip-wrapper reveal d2">
+          <div class="review-flip-inner">
+            <div class="review-flip-front">
+              <div class="review-source"><div class="review-source-icon">T</div><div class="review-source-name">Tripadvisor</div></div>
+              <div class="stars-row">★★★★★</div>
+              <p class="review-text">"One of the last old-fashioned diners around. The coffee is always hot in a real diner mug, the Harvest Omelet with the sautéed apples is something I've never had anywhere else. Truly special."</p>
+              <div class="reviewer-name">South Coast Visitor</div>
+              <div class="reviewer-detail">Tripadvisor · 5 Stars</div>
+              <div class="flip-hint">Hover to flip ↻</div>
+            </div>
+            <div class="review-flip-back">
+              <div class="flip-back-icon">🍂</div>
+              <div class="flip-back-stars">★★★★★</div>
+              <div class="flip-back-score">5.0 / 5</div>
+              <div class="flip-back-label">Tripadvisor</div>
+            </div>
           </div>
-          <div class="stars-row">★★★★★</div>
-          <p class="review-text">"One of the last old-fashioned diners around. The coffee is always hot in a real diner mug, the Harvest Omelet with the sautéed apples is something I've never had anywhere else. Truly special."</p>
-          <div class="reviewer-name">South Coast Visitor</div>
-          <div class="reviewer-detail">Tripadvisor · 5 Stars</div>
         </div>
 
-        <div class="review-card">
-          <div class="review-source">
-            <div class="review-source-icon">G</div>
-            <div class="review-source-name">Google Reviews</div>
+        <!-- Card 3 -->
+        <div class="review-flip-wrapper reveal d3">
+          <div class="review-flip-inner">
+            <div class="review-flip-front">
+              <div class="review-source"><div class="review-source-icon">G</div><div class="review-source-name">Google Reviews</div></div>
+              <div class="stars-row">★★★★★</div>
+              <p class="review-text">"Great retro diner — good food, really nice people. The Benny's are excellent and the award-winning chili is no joke. Portions are generous and prices are completely reasonable. Deserves every star."</p>
+              <div class="reviewer-name">Local Breakfast Fan</div>
+              <div class="reviewer-detail">Google · 5 Stars</div>
+              <div class="flip-hint">Hover to flip ↻</div>
+            </div>
+            <div class="review-flip-back">
+              <div class="flip-back-icon">🍳</div>
+              <div class="flip-back-stars">★★★★★</div>
+              <div class="flip-back-score">5.0 / 5</div>
+              <div class="flip-back-label">Google Reviews</div>
+            </div>
           </div>
-          <div class="stars-row">★★★★★</div>
-          <p class="review-text">"Great retro diner — good food, really nice people. The Benny's are excellent and the award-winning chili is no joke. Portions are generous and prices are completely reasonable. Deserves every star."</p>
-          <div class="reviewer-name">Local Breakfast Fan</div>
-          <div class="reviewer-detail">Google · 5 Stars</div>
         </div>
 
-        <div class="review-card">
-          <div class="review-source">
-            <div class="review-source-icon">R</div>
-            <div class="review-source-name">Restaurantji</div>
+        <!-- Card 4 -->
+        <div class="review-flip-wrapper reveal d1">
+          <div class="review-flip-inner">
+            <div class="review-flip-front">
+              <div class="review-source"><div class="review-source-icon">R</div><div class="review-source-name">Restaurantji</div></div>
+              <div class="stars-row">★★★★★</div>
+              <p class="review-text">"The chocolate chip pancakes are worth the drive alone. Fluffy, hot off the griddle, real maple syrup. My kids ask for Pandolfi's by name on Sunday mornings. That says everything."</p>
+              <div class="reviewer-name">Family from Wareham</div>
+              <div class="reviewer-detail">Restaurantji · 5 Stars</div>
+              <div class="flip-hint">Hover to flip ↻</div>
+            </div>
+            <div class="review-flip-back">
+              <div class="flip-back-icon">🥞</div>
+              <div class="flip-back-stars">★★★★★</div>
+              <div class="flip-back-score">5.0 / 5</div>
+              <div class="flip-back-label">Restaurantji · 4.7 avg</div>
+            </div>
           </div>
-          <div class="stars-row">★★★★★</div>
-          <p class="review-text">"The chocolate chip pancakes are worth the drive alone. Fluffy, hot off the griddle, real maple syrup. My kids ask for Pandolfi's by name on Sunday mornings. That says everything."</p>
-          <div class="reviewer-name">Family from Wareham</div>
-          <div class="reviewer-detail">Restaurantji · 5 Stars</div>
         </div>
 
-        <div class="review-card">
-          <div class="review-source">
-            <div class="review-source-icon">G</div>
-            <div class="review-source-name">Google Reviews</div>
+        <!-- Card 5 -->
+        <div class="review-flip-wrapper reveal d2">
+          <div class="review-flip-inner">
+            <div class="review-flip-front">
+              <div class="review-source"><div class="review-source-icon">G</div><div class="review-source-name">Google Reviews</div></div>
+              <div class="stars-row">★★★★★</div>
+              <p class="review-text">"Came in for the lobster roll after seeing it on their Facebook and it did not disappoint. Fresh lobster, perfect brioche roll, light on the mayo. A proper New England lunch. We'll be back."</p>
+              <div class="reviewer-name">Summer Visitor</div>
+              <div class="reviewer-detail">Google · 5 Stars</div>
+              <div class="flip-hint">Hover to flip ↻</div>
+            </div>
+            <div class="review-flip-back">
+              <div class="flip-back-icon">🦞</div>
+              <div class="flip-back-stars">★★★★★</div>
+              <div class="flip-back-score">5.0 / 5</div>
+              <div class="flip-back-label">Google Reviews</div>
+            </div>
           </div>
-          <div class="stars-row">★★★★★</div>
-          <p class="review-text">"Came in for the lobster roll after seeing it on their Facebook and it did not disappoint. Fresh lobster, perfect brioche roll, light on the mayo. A proper New England lunch. We'll be back."</p>
-          <div class="reviewer-name">Summer Visitor</div>
-          <div class="reviewer-detail">Google · 5 Stars</div>
         </div>
 
-        <div class="review-card">
-          <div class="review-source">
-            <div class="review-source-icon">T</div>
-            <div class="review-source-name">Tripadvisor</div>
+        <!-- Card 6 -->
+        <div class="review-flip-wrapper reveal d3">
+          <div class="review-flip-inner">
+            <div class="review-flip-front">
+              <div class="review-source"><div class="review-source-icon">T</div><div class="review-source-name">Tripadvisor</div></div>
+              <div class="stars-row">★★★★★</div>
+              <p class="review-text">"Homemade hash, crispy and salty — exactly what great hash is supposed to be. The staff is friendly, service is fast, and there's always a good crowd in the morning. A real community diner."</p>
+              <div class="reviewer-name">Early Morning Regular</div>
+              <div class="reviewer-detail">Tripadvisor · 5 Stars</div>
+              <div class="flip-hint">Hover to flip ↻</div>
+            </div>
+            <div class="review-flip-back">
+              <div class="flip-back-icon">☕</div>
+              <div class="flip-back-stars">★★★★★</div>
+              <div class="flip-back-score">5.0 / 5</div>
+              <div class="flip-back-label">Tripadvisor</div>
+            </div>
           </div>
-          <div class="stars-row">★★★★★</div>
-          <p class="review-text">"Homemade hash, crispy and salty — exactly what great hash is supposed to be. The staff is friendly, service is fast, and there's always a good crowd in the morning. A real community diner."</p>
-          <div class="reviewer-name">Early Morning Regular</div>
-          <div class="reviewer-detail">Tripadvisor · 5 Stars</div>
         </div>
 
       </div>
@@ -1343,6 +1549,7 @@
 
   <!-- ── CTA ── -->
   <section class="cta">
+    <div class="cta-glow"></div>
     <div class="cta-inner">
       <div class="cta-eyebrow">No Reservations Needed</div>
       <h2>
@@ -1482,5 +1689,219 @@
     <div class="footer-credit">Demo site designed by <strong>Harborbuilt Technical Services</strong> · harborbuilt.co</div>
   </footer>
 
+  <!-- THREE.JS -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+  <script>
+  /* ══════════════════════════════════════════════
+     THREE.JS — FLOATING 3D HERO BACKGROUND
+  ══════════════════════════════════════════════ */
+  (function () {
+    const canvas = document.getElementById('hero-canvas');
+    if (!canvas || typeof THREE === 'undefined') return;
+
+    const hero   = canvas.closest('.hero');
+    const W = () => hero.clientWidth;
+    const H = () => hero.clientHeight;
+
+    const scene    = new THREE.Scene();
+    const camera   = new THREE.PerspectiveCamera(60, W() / H(), 0.1, 100);
+    camera.position.z = 16;
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(W(), H());
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.8));
+
+    /* Lighting */
+    scene.add(new THREE.AmbientLight(0xffffff, 0.35));
+    const pL1 = new THREE.PointLight(0xc9922e, 4, 40);
+    pL1.position.set(9, 8, 8);
+    scene.add(pL1);
+    const pL2 = new THREE.PointLight(0x8f1a2c, 2.5, 30);
+    pL2.position.set(-9, -5, 5);
+    scene.add(pL2);
+    scene.add(Object.assign(new THREE.DirectionalLight(0xfef9ec, 0.4), { position: new THREE.Vector3(0, 10, 4) }));
+
+    /* Helpers */
+    const gold  = new THREE.Color(0xc9922e);
+    const cream = new THREE.Color(0xfef9ec);
+    const white = new THREE.Color(0xffffff);
+    const rand  = (min, max) => Math.random() * (max - min) + min;
+
+    const objs = [];
+
+    function mkMesh(geo, color, opacity, wire) {
+      return new THREE.Mesh(geo,
+        new THREE.MeshPhongMaterial({ color, transparent: true, opacity, wireframe: !!wire, shininess: 90 }));
+    }
+
+    function addObj(mesh, rx, ry) {
+      scene.add(mesh);
+      objs.push({ mesh, rx: rx || rand(.002, .006), ry: ry || rand(.001, .004),
+                  drift: rand(0, Math.PI * 2), ds: rand(.25, .55) });
+    }
+
+    /* Tori — plate / donut shapes */
+    [[−7,  3, −5, 2.4, .4, gold,  .18, true ],
+     [ 7, −2, −8, 3.0, .5, cream, .12, true ],
+     [ 2,  5, −3, 1.7, .3, gold,  .22, false],
+     [−4, −4, −6, 2.1, .35,cream, .14, true ],
+     [ 9,  3, −7, 1.4, .25,white, .1,  true ]
+    ].forEach(([x,y,z,r,t,c,o,w]) => {
+      const m = mkMesh(new THREE.TorusGeometry(r, t, 18, 60), c, o, w);
+      m.position.set(x, y, z);
+      m.rotation.set(rand(0, Math.PI), rand(0, Math.PI), 0);
+      addObj(m);
+    });
+
+    /* Icosahedra */
+    [[−9, 1, −4, 1.2, gold,  .28],
+     [ 5,−3, −2,  .8, cream, .35],
+     [−2,−5, −7, 1.4, gold,  .2 ]
+    ].forEach(([x,y,z,r,c,o]) => {
+      const m = mkMesh(new THREE.IcosahedronGeometry(r, 0), c, o, true);
+      m.position.set(x, y, z);
+      addObj(m, .005, .007);
+    });
+
+    /* Octahedra */
+    [[ 4, 4,−3, .6, gold,  .4],
+     [−6,−2,−5, .4, cream, .5],
+     [ 1,−2,−1, .3, white, .6],
+     [−3, 2,−9, .8, gold,  .25]
+    ].forEach(([x,y,z,r,c,o]) => {
+      const m = mkMesh(new THREE.OctahedronGeometry(r, 0), c, o, false);
+      m.position.set(x, y, z);
+      addObj(m, .004, .006);
+    });
+
+    /* Particle cloud */
+    const N = 140;
+    const pos = new Float32Array(N * 3);
+    for (let i = 0; i < N * 3; i++) pos[i] = (Math.random() - .5) * 32;
+    const pGeo = new THREE.BufferGeometry();
+    pGeo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    const particles = new THREE.Points(pGeo,
+      new THREE.PointsMaterial({ color: 0xc9922e, size: .07, transparent: true, opacity: .45 }));
+    scene.add(particles);
+
+    /* Mouse parallax */
+    let mx = 0, my = 0, cx = 0, cy = 0;
+    hero.addEventListener('mousemove', e => {
+      const r = hero.getBoundingClientRect();
+      mx = ((e.clientX - r.left) / r.width)  * 2 - 1;
+      my = -(((e.clientY - r.top)  / r.height) * 2 - 1);
+    });
+
+    /* Resize */
+    window.addEventListener('resize', () => {
+      camera.aspect = W() / H();
+      camera.updateProjectionMatrix();
+      renderer.setSize(W(), H());
+    });
+
+    /* Animate */
+    let t = 0;
+    (function loop() {
+      requestAnimationFrame(loop);
+      t += .007;
+      objs.forEach(o => {
+        o.mesh.rotation.x += o.rx;
+        o.mesh.rotation.y += o.ry;
+        o.mesh.position.y += Math.sin(t * o.ds + o.drift) * .004;
+      });
+      particles.rotation.y += .0004;
+      particles.rotation.x += .00015;
+      cx += (mx * 2.2 - cx) * .04;
+      cy += (my * 1.2 - cy) * .04;
+      camera.position.x = cx;
+      camera.position.y = cy;
+      camera.lookAt(0, 0, 0);
+      renderer.render(scene, camera);
+    })();
+  })();
+
+  /* ══════════════════════════════════════════════
+     3D TILT + GLOSS on menu cards
+  ══════════════════════════════════════════════ */
+  document.querySelectorAll('.sig-card').forEach(card => {
+    const gloss = card.querySelector('.sig-gloss');
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - .5;
+      const y = (e.clientY - r.top)  / r.height - .5;
+      card.style.transform =
+        `perspective(700px) rotateY(${x * 14}deg) rotateX(${-y * 14}deg) scale3d(1.04,1.04,1.04)`;
+      card.style.boxShadow = `0 24px 50px rgba(0,0,0,.18)`;
+      if (gloss) gloss.style.background =
+        `radial-gradient(circle at ${e.clientX - r.left}px ${e.clientY - r.top}px,
+          rgba(255,255,255,.18) 0%, transparent 65%)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(700px) rotateY(0) rotateX(0) scale3d(1,1,1)';
+      card.style.boxShadow = '';
+      if (gloss) gloss.style.background = 'transparent';
+    });
+  });
+
+  /* ══════════════════════════════════════════════
+     SCROLL REVEAL (IntersectionObserver)
+  ══════════════════════════════════════════════ */
+  const revObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
+    });
+  }, { threshold: .1, rootMargin: '0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revObs.observe(el));
+
+  /* ══════════════════════════════════════════════
+     COUNT-UP on stat numbers
+  ══════════════════════════════════════════════ */
+  const cntObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting || e.target.dataset.counted) return;
+      e.target.dataset.counted = '1';
+      const target   = parseFloat(e.target.dataset.count);
+      const decimal  = e.target.dataset.decimal === 'true';
+      const suffix   = e.target.dataset.suffix  || '';
+      const prefix   = e.target.dataset.prefix  || '';
+      const dur      = 1800;
+      const start    = Date.now();
+      const tick = () => {
+        const p = Math.min((Date.now() - start) / dur, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        const val  = target * ease;
+        e.target.textContent = prefix + (decimal ? val.toFixed(1) : Math.floor(val)) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      tick();
+      cntObs.unobserve(e.target);
+    });
+  }, { threshold: .6 });
+  document.querySelectorAll('[data-count]').forEach(el => cntObs.observe(el));
+
+  /* ══════════════════════════════════════════════
+     MAGNETIC BUTTONS
+  ══════════════════════════════════════════════ */
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const dx = e.clientX - r.left - r.width  / 2;
+      const dy = e.clientY - r.top  - r.height / 2;
+      btn.style.transform = `translate(${dx * .22}px, ${dy * .22}px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
+
+  /* ══════════════════════════════════════════════
+     HERO PARALLAX SCROLL
+  ══════════════════════════════════════════════ */
+  const heroInner = document.querySelector('.hero-inner');
+  window.addEventListener('scroll', () => {
+    if (!heroInner) return;
+    const s = Math.min(window.scrollY / window.innerHeight, 1);
+    heroInner.style.transform  = `perspective(1200px) rotateX(${s * 5}deg) translateY(${-s * 50}px)`;
+    heroInner.style.opacity    = 1 - s * .5;
+  }, { passive: true });
+  </script>
 </body>
 </html>
